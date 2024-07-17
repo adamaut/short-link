@@ -9,10 +9,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Configuration de la connexion à la base de données
 const dbConfig = {
-  host: 'ftpupload.net',
-  user: 'ezyro_36850802',
-  password: '39d08a7',
-  database: 'ezyro_36850802_az'
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME
 };
 
 // Fonction pour créer une connexion à la base de données
@@ -38,7 +38,7 @@ app.post('/shorten', async (req, res) => {
 
 app.get('/:shortCode', async (req, res) => {
   const { shortCode } = req.params;
-  
+
   try {
     const connection = await getConnection();
     const [rows] = await connection.execute('SELECT long_url FROM links WHERE short_code = ?', [shortCode]);
