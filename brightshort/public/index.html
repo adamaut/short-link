@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL SNAP - Raccourcisseur d'URL Futuriste</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #A8FFDF;
+            --secondary-color: #F8F8F9;
+            --accent-color: #0C1A1A;
+            --text-color: #000000;
+            --color: #6ACFC7;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--primary-color);
+            color: var(--text-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            
+        }
+
+        header {
+            background-color: var(--secondary-color);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .logo {
+            font-family: 'Orbitron';
+            font-size: 2em;
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        main {
+            padding: 40px 0;
+        }
+
+        .shortener {
+            background-color: var(--secondary-color);
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            color: var(--accent-color);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .url-input {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        input[type="url"] {
+            width: 70%;
+            padding: 10px;
+            font-size: 1em;
+            border: 2px solid var(--accent-color);
+            border-radius: 5px 0 0 5px;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: var(--accent-color);
+            color: var(--secondary-color);
+            border: none;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        button:hover {
+            background-color: #183636;
+        }
+
+        #result {
+            text-align: center;
+            font-weight: 600;
+            color: var(--accent-color);
+        }
+
+        .faq {
+            background-color: var(--secondary-color);
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .faq h2 {
+            color: var(--accent-color);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .faq-item {
+            margin-bottom: 20px;
+        }
+
+        .faq-question {
+            background-color: var(--accent-color);
+            color: var(--secondary-color);
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background-color: #183636;
+        }
+
+        .faq-answer {
+            display: none;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 0 0 5px 5px;
+        }
+
+        footer {
+            background: var(--color);
+            color: var(--secondary-color);
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        .footer-btn {
+            display: inline-block;
+            margin: 0 10px;
+            padding: 10px 20px;
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .footer-btn:hover {
+            background-color: #0089b8;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="/" class="logo">URL SNAP</a>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="shortener">
+            <h1>Raccourcissez vos liens</h1>
+            <div class="url-input">
+                <input type="url" id="longUrl" placeholder="Collez votre lien long ici">
+                <button onclick="shortenUrl()">Raccourcir</button>
+            </div>
+            <p id="result"></p>
+        </section>
+
+        <section class="faq">
+            <h2>FAQ</h2>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleAnswer(this)">Comment fonctionne URL SNAP ?</div>
+                <div class="faq-answer">URL SNAP prend votre lien long et génère un code court unique. Lorsque quelqu'un clique sur le lien court, il est redirigé vers le lien original.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleAnswer(this)">Les liens raccourcis expirent-ils ?</div>
+                <div class="faq-answer">Non, nos liens raccourcis n'expirent pas. Ils resteront actifs indéfiniment.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleAnswer(this)">Puis-je personnaliser mes liens courts ?</div>
+                <div class="faq-answer">Actuellement, cette fonctionnalité n'est pas disponible, mais nous travaillons à l'implémenter dans le futur.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleAnswer(this)">Le service est-il gratuit ?</div>
+                <div class="faq-answer">Oui, URL SNAP est entièrement gratuit à utiliser.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleAnswer(this)">Puis-je voir des statistiques sur mes liens ?</div>
+                <div class="faq-answer">Cette fonctionnalité n'est pas encore disponible, mais nous prévoyons de l'ajouter prochainement.</div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <a href="#" class="footer-btn">Mentions légales</a>
+        <a href="#" class="footer-btn">Politique de confidentialité</a>
+        <a href="#" class="footer-btn">Conditions d'utilisation</a>
+    </footer>
+
+    <script>
+        async function shortenUrl() {
+            const longUrl = document.getElementById('longUrl').value;
+            const response = await fetch('/shorten', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ longUrl }),
+            });
+            const data = await response.json();
+            document.getElementById('result').innerHTML = `Votre lien court : <a href="${data.shortUrl}" target="_blank">${data.shortUrl}</a>`;
+        }
+    
+        function toggleAnswer(question) {
+            const answer = question.nextElementSibling;
+            answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+        }
+    </script>
+</body>
+</html>
