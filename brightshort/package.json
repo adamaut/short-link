@@ -2,8 +2,9 @@
   "name": "brightshort",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -12,6 +13,6 @@
   "dependencies": {
     "express": "^4.19.2",
     "shortid": "^2.2.16",
-    "sqlite3": "^5.1.7"
+    "mysql2": "^2.2.5"
   }
 }
