@@ -23,7 +23,7 @@ async function getConnection() {
 app.post('/shorten', async (req, res) => {
   const { longUrl } = req.body;
   const shortCode = shortid.generate();
-  const shortUrl = `https://urlsnap.unaux.com/${shortCode}`; // Remplacez par votre domaine réel
+  const shortUrl = `https://short-link-r2y3.onrender.com/${shortCode}`; // Remplacez par votre domaine réel
 
   try {
     const connection = await getConnection();
