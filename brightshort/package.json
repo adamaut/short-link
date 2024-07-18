@@ -1,5 +1,5 @@
 {
-  "name": "brightshort",
+  "name": "final url snap website",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -13,6 +13,6 @@
   "dependencies": {
     "express": "^4.19.2",
     "shortid": "^2.2.16",
-    "mysql2": "^2.2.5"
+    "mysql2": "^3.10.2"
   }
 }
